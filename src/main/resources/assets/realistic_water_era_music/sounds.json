@@ -1,0 +1,11 @@
+{
+  "era_theme": {
+    "subtitle": "subtitles.realistic_water_era_music.era_theme",
+    "sounds": [
+      {
+        "name": "realistic_water_era_music:music/gaiety_in_the_golden_age",
+        "stream": true
+      }
+    ]
+  }
+}

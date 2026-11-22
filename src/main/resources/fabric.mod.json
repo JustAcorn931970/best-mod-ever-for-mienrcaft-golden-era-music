@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "realistic_water_era_music",
+  "version": "${version}",
+  "name": "Realistic Water Era Music",
+  "description": "Replaces Minecraft's background soundtrack with a looping era theme.",
+  "authors": ["JustAcorn931970"],
+  "environment": "client",
+  "entrypoints": {
+    "main": ["dev.justacorn.rwemusic.RealisticWaterEraMusic"],
+    "client": ["dev.justacorn.rwemusic.client.RweMusicClient"],
+    "modmenu": ["dev.justacorn.rwemusic.client.ModMenuIntegration"]
+  },
+  "mixins": ["realistic_water_era_music.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~26.3",
+    "java": ">=25",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "modmenu": "*"
+  }
+}
