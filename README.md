@@ -35,7 +35,7 @@ The mod creates `config/realistic-water-era-music.properties` and remembers the 
 
 ## Build on Windows
 
-Install a JDK 25 and make sure `java -version` reports 25. Run `build.bat` from this folder; it downloads Gradle 9.7.1 automatically and then fetches the Fabric/Minecraft/Mod Menu dependencies (internet required).
+Install a JDK 25 and make sure `java -version` reports 25. Run `build.bat` from this folder; it downloads Gradle 9.9.1 automatically and then fetches the Fabric/Minecraft/Mod Menu dependencies (internet required).
 
 You can also import the folder as a Gradle project in IntelliJ IDEA and run the `build` task.
 

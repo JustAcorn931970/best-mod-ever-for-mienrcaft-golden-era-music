@@ -24,13 +24,13 @@ if errorlevel 1 (
 )
 
 set "TOOLS_DIR=%LOCALAPPDATA%\RWE-Music-Build-Tools"
-set "GRADLE_HOME=%TOOLS_DIR%\gradle-9.7.1"
+set "GRADLE_HOME=%TOOLS_DIR%\gradle-9.9.1"
 set "GRADLE_EXE=%GRADLE_HOME%\bin\gradle.bat"
 
 if not exist "%GRADLE_EXE%" (
-  echo Downloading Gradle 9.7.1...
+  echo Downloading Gradle 9.9.1...
   if not exist "%TOOLS_DIR%" mkdir "%TOOLS_DIR%"
-  powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='Stop'; $zip=Join-Path $env:LOCALAPPDATA 'RWE-Music-Build-Tools\gradle-9.7.1-bin.zip'; Invoke-WebRequest 'https://services.gradle.org/distributions/gradle-9.7.1-bin.zip' -OutFile $zip; Expand-Archive -LiteralPath $zip -DestinationPath (Join-Path $env:LOCALAPPDATA 'RWE-Music-Build-Tools') -Force; Remove-Item $zip -Force"
+  powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='Stop'; $zip=Join-Path $env:LOCALAPPDATA 'RWE-Music-Build-Tools\gradle-9.9.1-bin.zip'; Invoke-WebRequest 'https://services.gradle.org/distributions/gradle-9.9.1-bin.zip' -OutFile $zip; Expand-Archive -LiteralPath $zip -DestinationPath (Join-Path $env:LOCALAPPDATA 'RWE-Music-Build-Tools') -Force; Remove-Item $zip -Force"
   if errorlevel 1 (
     echo ERROR: Could not download Gradle. Check your internet connection.
     pause
