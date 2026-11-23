@@ -1,12 +1,14 @@
 package dev.justacorn.rwemusic.client;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.sounds.SoundEngine;
 import net.minecraft.client.sounds.SoundManager;
 import net.minecraft.sounds.SoundSource;
 
-/** Owns exactly one music instance and restores it if Minecraft reloads its sound engine. */
+/** Owns one soundtrack instance and restarts it if Minecraft reloads its sound engine. */
 public final class MusicController {
     private static LoopingMusicSound current;
+    private static boolean clearVanillaBeforeNextStart = true;
 
     private MusicController() { }
 
@@ -18,22 +20,32 @@ public final class MusicController {
             return;
         }
 
-        if (current != null && soundManager.isActive(current)) {
-            return;
+        if (current != null) {
+            if (soundManager.isActive(current)) {
+                return;
+            }
+            // Sound-engine/resource reloads invalidate the old instance. Recreate it below.
+            current = null;
         }
 
-        // On first start/re-enable, clear any vanilla background track before starting ours.
-        if (current == null) {
+        if (clearVanillaBeforeNextStart) {
             soundManager.stop(null, SoundSource.MUSIC);
+            clearVanillaBeforeNextStart = false;
         }
 
-        current = new LoopingMusicSound();
-        soundManager.play(current);
+        LoopingMusicSound next = new LoopingMusicSound();
+        SoundEngine.PlayResult result = soundManager.play(next);
+        if (result != SoundEngine.PlayResult.NOT_STARTED) {
+            current = next;
+        }
+        // If the sound engine is not ready yet, the next client tick retries without
+        // creating/retaining a phantom active instance.
     }
 
+    /** Called when the Mod Menu setting changes. */
     public static void refresh(Minecraft client) {
         stop(client);
-        // When enabled, the end-of-tick callback starts the track immediately on the next tick.
+        clearVanillaBeforeNextStart = MusicConfig.isEnabled();
     }
 
     private static void stop(Minecraft client) {

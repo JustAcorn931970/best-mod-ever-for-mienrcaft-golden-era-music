@@ -23,7 +23,7 @@ dependencies {
     modCompileOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
 
     // Mixin annotations used by the small client-only music-scheduler hook.
-    annotationProcessor "net.fabricmc:sponge-mixin:0.15.5+mixin.0.8.7"
+    annotationProcessor "net.fabricmc:sponge-mixin:0.17.5+mixin.0.8.7"
 }
 
 processResources {
